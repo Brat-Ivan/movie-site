@@ -1,0 +1,10 @@
+:root {
+  --color-white: #fff;
+  --color-rating-high: #33cc33;
+  --color-rating-medium: #ccb333;
+  --color-rating-low: #cc3333;
+}
+
+img {
+  display: block;
+}

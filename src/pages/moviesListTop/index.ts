@@ -1,0 +1,1 @@
+export { MoviesListTop } from './MoviesListTop';

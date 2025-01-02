@@ -1,0 +1,1 @@
+export { MoviesListMain } from './MoviesListMain';

@@ -1,0 +1,40 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 16px;
+}
+
+.menu:hover {
+  cursor: pointer;
+}
+
+.menu::before,
+.menu::after,
+.menu__line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--color-white);
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+.menu::before,
+.menu::after {
+  content: '';
+}
+
+.menu--active .menu__line {
+  opacity: 0;
+}
+
+.menu--active::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu--active::after {
+  transform: translateY(-7px) rotate(-45deg);
+}

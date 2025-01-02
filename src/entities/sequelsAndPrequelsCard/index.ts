@@ -1,0 +1,1 @@
+export { SequelsAndPrequelsCard } from './SequelsAndPrequelsCard';
