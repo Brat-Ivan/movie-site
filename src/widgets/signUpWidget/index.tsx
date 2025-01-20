@@ -9,7 +9,7 @@ type FormStep = 'sign_up' | 'thanks';
 export const SignUpWidget = () => {
   const [formStep, setFormStep] = useState<FormStep>('sign_up');
 
-  const [formData, setFormData] = useState<Data>();
+  const [, setFormData] = useState<Data>();
 
   const onNext = () => {
     setFormStep(prevStep => {
@@ -47,6 +47,8 @@ export const SignUpWidget = () => {
             variant="body1"
             component={RouterLink}
             color="primary"
+            display="block"
+            mb={16}
             to="/"
             sx={{ textDecoration: 'none' }}
             onClick={handleClick}

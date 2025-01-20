@@ -1,5 +1,12 @@
 import { ArrowBack } from '@mui/icons-material';
-import { Container, IconButton, Stack, Typography } from '@mui/material';
+import {
+  Container,
+  IconButton,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,6 +20,9 @@ export const MoviesListTop = () => {
   const location = useLocation();
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const movieType = TOP_LISTS.find(el => el.url === location.pathname);
 
@@ -31,7 +41,13 @@ export const MoviesListTop = () => {
 
   return (
     <Container maxWidth="xl" sx={{ p: '0 24px' }}>
-      <Stack flexDirection="row" pt={2} pl={11} mb={2}>
+      <Stack
+        flexDirection="row"
+        alignItems="center"
+        pt={2}
+        pl={{ sm: 0, md: 8, xl: 11 }}
+        mb={2}
+      >
         <IconButton onClick={() => navigate(-1)} sx={{ mr: 2 }}>
           <ArrowBack
             sx={{
@@ -40,7 +56,11 @@ export const MoviesListTop = () => {
             }}
           />
         </IconButton>
-        <Typography variant="h4" component="h1" color="text.primary">
+        <Typography
+          variant={isSmallScreen ? 'h5' : 'h4'}
+          component="h1"
+          color="text.primary"
+        >
           {movieType?.title}
         </Typography>
       </Stack>

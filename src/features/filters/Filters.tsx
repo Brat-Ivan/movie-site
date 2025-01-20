@@ -124,11 +124,16 @@ export const Filters = (props: Props) => {
         </Select>
       </FormControl>
       <Box display="flex" columnGap={2}>
-        <Button variant="outlined" onClick={handleApplyFilters}>
+        <Button
+          variant="outlined"
+          onClick={handleApplyFilters}
+          sx={{ width: '50%' }}
+        >
           Применить
         </Button>
         <Button
           variant="outlined"
+          sx={{ width: '50%' }}
           onClick={() => {
             setOrder('');
             setCountry('');

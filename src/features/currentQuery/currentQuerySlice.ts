@@ -1,17 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface CounterState {
-  countries: string;
-  genreId: string;
-  order: string;
-  type: string;
-  year: string;
-  yearFrom: string;
-  yearTo: string;
-  page: number;
-}
+import { CounterState } from '../../shared/types';
 
-const initialState: CounterState = {
+const initialState: Omit<CounterState, 'keyword'> = {
   countries: '',
   genreId: '',
   order: '',

@@ -53,7 +53,6 @@ export const SignInForm = () => {
       <Typography
         variant="h4"
         component="h1"
-        textTransform="uppercase"
         textAlign="center"
         color="text.primary"
         margin="24px 0 36px"

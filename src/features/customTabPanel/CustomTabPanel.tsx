@@ -19,11 +19,18 @@ export const CustomTabPanel = (props: TabPanelProps) => {
     >
       {value === index && (
         <Box
-          display="flex"
-          justifyContent="flex-start"
-          flexWrap="wrap"
+          display="grid"
           columnGap="24px"
-          sx={{ p: 5 }}
+          sx={{
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(3, 1fr)',
+              lg: 'repeat(4, 1fr)',
+              xl: 'repeat(5, 1fr)',
+            },
+            p: 4,
+          }}
         >
           {children}
         </Box>

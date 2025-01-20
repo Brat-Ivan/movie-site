@@ -40,14 +40,18 @@ export const Header = () => {
               <HamburgerMenu openMenu={openMenu} />
             </IconButton>
             <Drawer
-              variant="persistent"
+              variant="temporary"
               open={openMenu}
               anchor="right"
               sx={{
                 display: { xs: 'inherit', sm: 'none' },
                 '& .MuiDrawer-paper': {
-                  width: '80%',
+                  width: '85%',
                   height: '100%',
+                },
+                '& .MuiModal-backdrop': {
+                  height: 'calc(100% - 66px)',
+                  top: 'auto',
                 },
               }}
               onClick={() => setOpenMenu(prev => !prev)}
@@ -89,7 +93,10 @@ export const Header = () => {
               size="large"
               color="inherit"
               onClick={() => setOpenSearch(prev => !prev)}
-              sx={{ display: { xs: 'block', md: 'none' }, padding: '4px' }}
+              sx={{
+                display: { xs: 'inline-flex', md: 'none' },
+                padding: '4px',
+              }}
             >
               <SearchIcon sx={{ fontSize: '32px' }} />
             </IconButton>

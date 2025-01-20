@@ -3,14 +3,14 @@ import { Link as RouterLink } from 'react-router-dom';
 
 export const ErrorNotFound = () => {
   return (
-    <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
+    <Container maxWidth="sm" sx={{ textAlign: 'center', m: 'auto' }}>
       <Typography
         variant="h2"
         component="h1"
         color="text.primary"
         sx={{
-          p: { xs: '100px 0 25px', sm: '200px 0 50px' },
-          fontSize: { xs: '2.5rem', sm: '3.75rem' },
+          p: { xs: '25px 0', md: '50px 0' },
+          fontSize: { xs: '2.5rem', md: '3.75rem' },
         }}
       >
         404 - Not found
@@ -19,6 +19,8 @@ export const ErrorNotFound = () => {
         variant="body1"
         component={RouterLink}
         color="primary"
+        display="block"
+        mb={8}
         to="/"
         sx={{ textDecoration: 'none' }}
       >

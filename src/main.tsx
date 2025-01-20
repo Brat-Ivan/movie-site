@@ -9,14 +9,13 @@ import { RootState, store } from './app/store';
 
 import './index.css';
 
-import { ScrollToTop } from './app/ScrollToTop';
+import { useScrollToTop } from './shared/hooks/useScrollToTop';
 import { darkTheme, lightTheme } from './shared/theme';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter basename="/movie-site/">
-        <ScrollToTop />
         {(() => {
           const ThemeWrapper = () => {
             const themeMode = useSelector(
@@ -24,12 +23,15 @@ createRoot(document.getElementById('root')!).render(
             );
 
             return (
-              <ThemeProvider
-                theme={themeMode === 'dark' ? darkTheme : lightTheme}
-              >
-                <CssBaseline />
-                <App />
-              </ThemeProvider>
+              useScrollToTop(),
+              (
+                <ThemeProvider
+                  theme={themeMode === 'dark' ? darkTheme : lightTheme}
+                >
+                  <CssBaseline />
+                  <App />
+                </ThemeProvider>
+              )
             );
           };
 

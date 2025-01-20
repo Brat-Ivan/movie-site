@@ -20,14 +20,16 @@ export const ActorInfo = () => {
         container
         justifyContent="center"
         spacing={2}
-        sx={{ pt: 1, mt: { md: 2 }, mb: 4 }}
+        columnGap={5}
+        sx={{ pt: 2, mt: { md: 2 }, mb: 4 }}
       >
-        <Grid2 size={{ xs: 12, md: 3 }}>
+        <Grid2 size={{ xs: 12, md: 4 }}>
           <Box
-            width="300px"
-            height="450px"
+            width="296px"
+            height="444px"
             sx={{
               objectFit: 'cover',
+              m: { xs: '0 auto', lg: '0 auto 0 0' },
             }}
           >
             <img
@@ -39,8 +41,13 @@ export const ActorInfo = () => {
           </Box>
         </Grid2>
 
-        <Grid2 size={{ xs: 12, md: 7 }}>
-          <Stack mb={4}>
+        <Grid2 size={{ xs: 12, lg: 6 }}>
+          <Stack
+            mb={4}
+            sx={{
+              textAlign: { xs: 'center', lg: 'left' },
+            }}
+          >
             <Typography variant="h5" component="h1" fontWeight="700">
               {data.nameRu || data.nameEn}
             </Typography>
@@ -48,55 +55,83 @@ export const ActorInfo = () => {
               {data.nameRu && data.nameEn}
             </Typography>
           </Stack>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            mb={2}
+            sx={{ textAlign: { xs: 'center', lg: 'left' } }}
+          >
             Об актере
           </Typography>
-          <Grid2 container mb={4}>
-            <Grid2 size={6}>
+          <Grid2
+            container
+            justifyContent="space-between"
+            rowGap={1.5}
+            columnGap={3}
+          >
+            <Grid2 size={4} textAlign="right">
               <Typography gutterBottom color="text.secondary">
                 Карьера
               </Typography>
             </Grid2>
-            <Grid2 size={6}>
+            <Grid2 size={5}>
               <Typography gutterBottom>{data.profession}</Typography>
             </Grid2>
 
-            <Grid2 size={6}>
+            <Grid2 size={4} textAlign="right">
               <Typography gutterBottom color="text.secondary">
                 Рост
               </Typography>
             </Grid2>
-            <Grid2 size={6}>
+            <Grid2 size={5}>
               <Typography gutterBottom>
                 {data?.growth ? data.growth : '—'}
               </Typography>
             </Grid2>
 
-            <Grid2 size={6}>
+            <Grid2 size={4} textAlign="right">
               <Typography gutterBottom color="text.secondary">
                 Дата рождения
               </Typography>
             </Grid2>
-            <Grid2 size={6}>
+            <Grid2 size={5}>
               <Typography gutterBottom>
                 {data.birthday?.split('-').reverse().join('.') || '—'}{' '}
                 {data?.age ? '— ' + `${data.age}` + ' лет' : ''}
               </Typography>
             </Grid2>
 
-            <Grid2 size={6}>
+            <Grid2 size={4} textAlign="right">
+              <Typography gutterBottom color="text.secondary">
+                Место рождения
+              </Typography>
+            </Grid2>
+            <Grid2 size={5}>
+              <Typography gutterBottom>
+                {data?.birthplace ? data.birthplace : '—'}
+              </Typography>
+            </Grid2>
+
+            <Grid2 size={4} textAlign="right">
               <Typography gutterBottom color="text.secondary">
                 Всего фильмов
               </Typography>
             </Grid2>
-            <Grid2 size={6}>
+            <Grid2 size={5}>
               <Typography gutterBottom>{data.films.length}</Typography>
             </Grid2>
 
             {data.facts.length !== 0 && (
               <Grid2 mt={4}>
-                <Grid2 size={6}>
-                  <Typography gutterBottom variant="h5" component="h2">
+                <Grid2 size={12}>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    mb={2}
+                    sx={{ textAlign: { xs: 'center', lg: 'left' } }}
+                  >
                     Факты
                   </Typography>
                 </Grid2>
@@ -136,7 +171,9 @@ export const ActorInfo = () => {
           <Typography width={12} fontWeight="700" textAlign="end" mr={4}>
             №
           </Typography>
-          <Typography fontWeight="700">Навзвание</Typography>
+          <Typography fontWeight="700" mr={4}>
+            Навзвание
+          </Typography>
           <Typography fontWeight="700" ml="auto">
             Рейтинг
           </Typography>
@@ -147,7 +184,7 @@ export const ActorInfo = () => {
               <Typography width={12} textAlign="end" mr={4}>
                 {index + 1}
               </Typography>
-              <Typography>{film.nameRu || film.nameEn}</Typography>
+              <Typography mr={4}>{film.nameRu || film.nameEn}</Typography>
               <Typography ml="auto">{film.rating}</Typography>
             </Stack>
           ),

@@ -76,7 +76,6 @@ export const SignUpForm = ({ onNext, saveData }: Props) => {
       <Typography
         variant="h4"
         component="h1"
-        textTransform="uppercase"
         textAlign="center"
         color="text.primary"
         margin="24px 0 36px"
@@ -141,7 +140,7 @@ export const SignUpForm = ({ onNext, saveData }: Props) => {
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ fontSize: '18px', p: 1, mt: 2 }}
+          sx={{ fontSize: '18px', p: 1, mt: 2, mb: 4 }}
         >
           Присоединиться
         </Button>

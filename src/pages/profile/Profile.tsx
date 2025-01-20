@@ -37,7 +37,7 @@ export const Profile = () => {
 
   const [value, setValue] = useState(0);
 
-  const handleChange = (e: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -49,7 +49,7 @@ export const Profile = () => {
         justifyContent="center"
         alignItems="center"
         columnGap={4}
-        p="64px 0"
+        p="50px 0"
       >
         <Avatar
           sx={{

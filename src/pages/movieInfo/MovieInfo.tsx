@@ -32,6 +32,18 @@ export const MovieInfo = () => {
   const responseSequelsAndPrequels = useGetSequelsAndPrequelsQuery(id);
   const responseStaff = useGetStaffByFilmIdQuery(id);
 
+  const [directors, setDirectors] = useState<Staff[]>([]);
+
+  useEffect(() => {
+    if (responseStaff.data) {
+      const filteredDirectors = responseStaff.data
+        .filter((el: Staff) => el.professionText === 'Режиссеры')
+        .slice(0, 3);
+
+      setDirectors(filteredDirectors.length ? filteredDirectors : []);
+    }
+  }, [responseStaff.data]);
+
   const navigate = useNavigate();
 
   const storedAuthorizedUser = localStorage.getItem('authorized_user');
@@ -73,18 +85,18 @@ export const MovieInfo = () => {
 
   useEffect(() => {
     if (responseFilm.data) {
-      setIsWatched(getWatchedMovieIndex() >= 0 ? true : false);
+      setIsWatched(getWatchedMovieIndex() >= 0);
     }
   }, [responseFilm.data]);
 
   useEffect(() => {
     if (responseFilm.data) {
-      setIsFavorite(getFavoriteMovieIndex() >= 0 ? true : false);
+      setIsFavorite(getFavoriteMovieIndex() >= 0);
     }
   }, [responseFilm.data]);
 
   const addToWatchedMovies = () => {
-    setIsWatched(isWatched ? false : true);
+    setIsWatched(!isWatched);
 
     if (isWatched) {
       watchedMovies.splice(getWatchedMovieIndex(), 1);
@@ -97,7 +109,7 @@ export const MovieInfo = () => {
   };
 
   const addToFavoriteMovies = () => {
-    setIsFavorite(isFavorite ? false : true);
+    setIsFavorite(!isFavorite);
 
     if (isFavorite) {
       favoriteMovies.splice(getFavoriteMovieIndex(), 1);
@@ -134,7 +146,14 @@ export const MovieInfo = () => {
         sx={{ mt: 2, mb: 4 }}
       >
         <Grid2 size={{ xs: 12, lg: 4 }}>
-          <Box width="400px" height="600px" mb={4}>
+          <Box
+            sx={{
+              maxWidth: '400px',
+              width: '100%',
+              aspectRatio: '2/3',
+              m: { xs: '0 auto 24px', lg: '0 0 32px' },
+            }}
+          >
             <img
               src={responseFilm.data.posterUrl}
               alt={responseFilm.data.nameRu}
@@ -142,9 +161,19 @@ export const MovieInfo = () => {
               height="100%"
             />
           </Box>
-          <Stack maxWidth={'400px'} rowGap={2}>
+          <Stack
+            maxWidth={'400px'}
+            rowGap={2}
+            sx={{ m: { xs: '0 auto', lg: '0' } }}
+          >
             {trailer && (
-              <Box maxWidth="400px" height="240px">
+              <Box
+                sx={{
+                  width: '100%',
+                  aspectRatio: '16/9',
+                  m: { xs: '0 auto', lg: '0' },
+                }}
+              >
                 <iframe
                   width="100%"
                   height="100%"
@@ -179,65 +208,91 @@ export const MovieInfo = () => {
         <Grid2 size={{ lg: 6, sm: 12 }}>
           <Grid2 container>
             <Grid2 size={12}>
-              <Typography variant="h5" component="h1" fontWeight="700" mb={4}>
+              <Typography
+                variant="h5"
+                component="h1"
+                fontWeight="700"
+                m="0 auto 32px"
+                sx={{
+                  maxWidth: { xs: '400px', lg: 'none' },
+                  textAlign: { xs: 'center', lg: 'left' },
+                }}
+              >
                 {responseFilm.data.nameRu ||
                   responseFilm.data.nameEn ||
                   responseFilm.data.nameOriginal}
               </Typography>
             </Grid2>
           </Grid2>
-          <Grid2 container rowGap={1.5}>
-            <Grid2 size={6}>
-              <Typography color="text.secondary">Год</Typography>
+          <Grid2
+            container
+            display="flex"
+            justifyContent="space-between"
+            rowGap={1.5}
+            columnGap={3}
+          >
+            <Grid2 size={4}>
+              <Typography textAlign="right" color="text.secondary">
+                Год
+              </Typography>
             </Grid2>
-            <Grid2 size={6}>
-              <Typography gutterBottom>{responseFilm.data.year}</Typography>
+            <Grid2 size={5}>
+              <Typography gutterBottom>
+                {responseFilm?.data?.year ? responseFilm.data.year : '—'}
+              </Typography>
             </Grid2>
 
-            <Grid2 size={6}>
+            <Grid2 size={4} textAlign="right">
               <Typography color="text.secondary">Страна</Typography>
             </Grid2>
-            <Grid2 size={6}>
-              {responseFilm.data.countries.map(
-                ({ country }: Record<string, string>) => (
-                  <Typography gutterBottom key={country}>
-                    {country}
-                  </Typography>
-                ),
+            <Grid2 size={5}>
+              {responseFilm.data.countries.length ? (
+                responseFilm.data.countries.map(
+                  ({ country }: Record<string, string>) => (
+                    <Typography gutterBottom key={country}>
+                      {country}
+                    </Typography>
+                  ),
+                )
+              ) : (
+                <Typography gutterBottom>—</Typography>
               )}
             </Grid2>
 
-            <Grid2 size={6}>
+            <Grid2 size={4} textAlign="right">
               <Typography color="text.secondary">Жанр</Typography>
             </Grid2>
-            <Grid2 size={6}>
-              {responseFilm.data.genres.map(
-                ({ genre }: Record<string, string>) => (
-                  <Typography gutterBottom key={genre}>
-                    {genre}
-                  </Typography>
-                ),
+            <Grid2 size={5}>
+              {responseFilm.data.genres.length ? (
+                responseFilm.data.genres.map(
+                  ({ genre }: Record<string, string>) => (
+                    <Typography gutterBottom key={genre}>
+                      {genre}
+                    </Typography>
+                  ),
+                )
+              ) : (
+                <Typography gutterBottom>—</Typography>
               )}
             </Grid2>
 
-            <Grid2 size={6}>
+            <Grid2 size={4} textAlign="right">
               <Typography color="text.secondary">Режиссер</Typography>
             </Grid2>
-            <Grid2 size={6}>
-              {responseStaff?.data
-                ?.filter((el: Staff) => el.professionText === 'Режиссеры')
-                .slice(0, 3)
-                .map(({ nameRu }: Record<string, string>) => (
-                  <Typography gutterBottom key={nameRu}>
-                    {nameRu}
-                  </Typography>
-                ))}
+            <Grid2 size={5}>
+              {directors.length > 0
+                ? directors.map(({ nameRu, nameEn }) => (
+                    <Typography gutterBottom key={nameRu}>
+                      {nameRu || nameEn}
+                    </Typography>
+                  ))
+                : '—'}
             </Grid2>
 
-            <Grid2 size={6}>
+            <Grid2 size={4} textAlign="right">
               <Typography color="text.secondary">Время</Typography>
             </Grid2>
-            <Grid2 size={6}>
+            <Grid2 size={5}>
               <Typography gutterBottom>
                 {responseFilm.data.filmLength
                   ? `${responseFilm.data.filmLength} минут`
@@ -245,8 +300,12 @@ export const MovieInfo = () => {
               </Typography>
             </Grid2>
 
-            <Grid2 size={12}>
-              <Typography variant="h5" component="h2">
+            <Grid2 size={12} pt={4}>
+              <Typography
+                variant="h5"
+                component="h2"
+                sx={{ textAlign: { xs: 'center', lg: 'left' } }}
+              >
                 Описание
               </Typography>
             </Grid2>
@@ -277,14 +336,26 @@ export const MovieInfo = () => {
             justifyContent="center"
             width="100%"
             height="230px"
-            sx={{ p: { xl: '0 128px' } }}
+            sx={{
+              p: { xl: '0 128px' },
+              '& .bear-react-carousel__container': { justifyContent: 'center' },
+            }}
           >
             <BearCarousel
               data={convertDataToSlide(responseStaff.data)}
-              slidesPerView={8}
-              slidesPerGroup={8}
+              slidesPerView={3}
+              slidesPerGroup={3}
               isEnableNavButton
-              width="100%"
+              breakpoints={{
+                767: {
+                  slidesPerView: 5,
+                  slidesPerGroup: 5,
+                },
+                1279: {
+                  slidesPerView: 8,
+                  slidesPerGroup: 8,
+                },
+              }}
             />
           </Stack>
         </Stack>

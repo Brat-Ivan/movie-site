@@ -1,0 +1,9 @@
+export { ActorInfo } from './actorInfo';
+export { ErrorNotFound } from './errorNotFound';
+export { Home } from './home';
+export { MovieInfo } from './movieInfo';
+export { MoviesListMain } from './moviesListMain';
+export { MoviesListTop } from './moviesListTop';
+export { Profile } from './profile';
+export { SignIn } from './signIn';
+export { SignUp } from './signUp';

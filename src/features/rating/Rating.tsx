@@ -5,17 +5,19 @@ type Props = {
 };
 
 export const Rating = ({ rating }: Props) => {
+  const getRatingColor = (rating: number) => {
+    return rating >= 7
+      ? '--color-rating-high'
+      : rating >= 5
+        ? '--color-rating-medium'
+        : '--color-rating-low';
+  };
+
   return (
     <Box
       position="absolute"
       borderRadius={1}
-      bgcolor={
-        rating >= 7
-          ? 'var(--color-rating-high)'
-          : rating >= 5
-            ? 'var(--color-rating-medium)'
-            : 'var(--color-rating-low)'
-      }
+      bgcolor={`var(${getRatingColor(rating)})`}
       padding="2px 10px"
       top={8}
       left={8}

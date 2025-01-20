@@ -14,14 +14,22 @@ export const ActorCard = ({ actor }: Props) => {
   const theme = useTheme();
 
   return (
-    <Stack pr="16px">
+    <Stack
+      alignItems="center"
+      sx={{
+        width: { xs: '96px', sm: '136px' },
+        height: { xs: 'calc(80px / 2 * 3)', sm: 'calc(120px / 2 * 3)' },
+        m: 'auto',
+      }}
+    >
       <RouterLink to={`${ROUTES.actor}/${actor.staffId}`}>
         <Box
-          width="120px"
-          height="180px"
           sx={{
+            width: { xs: '80px', sm: '120px' },
+            height: { xs: '120px', sm: '180px' },
             objectFit: 'cover',
             border: `2px solid ${theme.palette.primary.main}`,
+            boxSizing: 'content-box',
           }}
           mb={1}
         >

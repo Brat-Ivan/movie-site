@@ -1,18 +1,20 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { ActorInfo } from '../pages/actorInfo';
-import { ErrorNotFound } from '../pages/errorNotFound';
-import { Home } from '../pages/home';
-import { MovieInfo } from '../pages/movieInfo';
-import { MoviesListMain } from '../pages/MoviesListMain';
-import { MoviesListTop } from '../pages/moviesListTop';
-import { SignIn } from '../pages/signIn';
-import { SignUp } from '../pages/signUp';
-import { Layout } from './layout';
+import { Layout } from './../layout';
 
 import 'bear-react-carousel/dist/index.css';
 
-import { Profile } from '../pages/profile';
+import {
+  ActorInfo,
+  ErrorNotFound,
+  Home,
+  MovieInfo,
+  MoviesListMain,
+  MoviesListTop,
+  Profile,
+  SignIn,
+  SignUp,
+} from '../pages';
 import { ROUTES } from '../shared/constants';
 
 function App() {

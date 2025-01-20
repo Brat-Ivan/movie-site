@@ -30,6 +30,7 @@ export const Home = () => {
         pr="16px"
         width="236px"
         height="calc(220px / 2 * 3)"
+        m="auto"
       >
         <RouterLink to={`${ROUTES.movie}/${row.kinopoiskId}`}>
           <BearSlideImage
@@ -92,14 +93,18 @@ export const Home = () => {
             isEnableAutoPlay
             isEnableLoop
             breakpoints={{
-              375: {
+              320: {
                 autoPlayTime: 0,
               },
-              768: {
+              767: {
+                slidesPerView: 3,
+                slidesPerGroup: 2,
+              },
+              1279: {
                 slidesPerView: 5,
+                slidesPerGroup: 4,
               },
             }}
-            width="100%"
           />
         </Stack>
       ))}

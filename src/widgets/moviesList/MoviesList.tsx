@@ -1,4 +1,4 @@
-import { Pagination, Stack } from '@mui/material';
+import { Pagination, Stack, useMediaQuery, useTheme } from '@mui/material';
 
 import { MovieCard } from '../../entities/movieCard';
 import { Film } from '../../shared/types';
@@ -15,6 +15,9 @@ export const MoviesList = (props: Props) => {
     props.setPage(value);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>
@@ -35,7 +38,9 @@ export const MoviesList = (props: Props) => {
           color="primary"
           variant="outlined"
           shape="rounded"
-          size="large"
+          size={isSmallScreen ? 'medium' : 'large'}
+          siblingCount={0}
+          boundaryCount={1}
           page={props.page}
           onChange={handlePageChange}
           sx={{ p: '24px 0 32px' }}

@@ -96,7 +96,7 @@ export const Search = () => {
         />
       )}
       sx={{
-        width: { md: '240px', xl: '300px' },
+        width: { xs: '90%', md: '220px', xl: '300px' },
         borderRadius: '8px',
         backgroundColor: 'background.default',
         '& .MuiOutlinedInput-root': {

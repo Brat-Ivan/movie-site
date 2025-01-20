@@ -82,3 +82,15 @@ export type User = {
   watchedMovies?: Film[];
   favoriteMovies?: Film[];
 };
+
+export interface CounterState {
+  countries: string;
+  genreId: string;
+  order: string;
+  type: string;
+  year: string;
+  yearFrom: string;
+  yearTo: string;
+  page: number;
+  keyword: string;
+}
